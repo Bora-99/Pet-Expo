@@ -10,7 +10,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 
 function CardInformation({ type, data }) {
-  console.log(data);
 
   const [open, setOpen] = React.useState(false);
   const [infoType, setInfoType] = React.useState({});

@@ -10,19 +10,19 @@ import  { useEffect } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { CustomTextField } from "./common/CustomTextField";
 
 export default function CreateAnimalForm() {
   const { register, reset, control } = useFormContext();
   const { id } = useParams();
 
-  useEffect( () =>
-  {
+  useEffect(() => {
     if (!id) return;
     axios
       .get(`http://localhost:5173/animals/${id}`)
       .then((response) => {
         const animalInformation = response.data;
-        const test = {
+        const animalData = {
           name: animalInformation.name,
           description: animalInformation.description,
           species: animalInformation.species,
@@ -31,9 +31,9 @@ export default function CreateAnimalForm() {
           height: animalInformation.height,
           placeOfFound: animalInformation.placeOfFound,
           weight: animalInformation.weight,
-          diet: animalInformation.diet
+          diet: animalInformation.diet,
         };
-        reset(test);
+        reset(animalData);
       })
       .catch((error) => {
         console.log(error);
@@ -54,72 +54,50 @@ export default function CreateAnimalForm() {
         <Box component="form" sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                {...register("name")}
-                label={"Name"}
-              />
+              <CustomTextField name="name" label="Name" control={control} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Controller
+              <CustomTextField
                 name="species"
+                label="Species"
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <TextField
-                    InputLabelProps={{ shrink: value }}
-                    helperText={error ? error.message : null}
-                    size="large"
-                    error={!!error}
-                    onChange={onChange}
-                    value={value}
-                    fullWidth
-                    label={"Spieces"}
-                    variant="outlined"
-                  />
-                )}
-              />
-              {/* <TextField value={{ ...register("species") }} label={"Spieces"} /> */}
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                {...register("family")}
-                label={"Family"}
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                {...register("habitat")}
-                label={"Habitat"}
+              <CustomTextField name="family" label="Family" control={control} />
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                name="habitat"
+                label="Habitat"
+                control={control}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                InputLabelProps={{ shrink: true }}
-                {...register("placeOfFound")}
-                fullWidth
-                label={"Place of Found"}
+              <CustomTextField
+                name="placeOfFound"
+                label="Place of Found"
+                control={control}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <TextField                 InputLabelProps={{ shrink: true }}
- {...register("diet")} label={"Diet"} />
+              <CustomTextField name="diet" label="Diet" control={control} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <TextField {...register("weight")} label={"Weight kg"} />
+              <CustomTextField
+                name="weight"
+                label="Weight kg"
+                control={control}
+              />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <TextField {...register("height")} label={"Height cm"} />
+              <CustomTextField name="height" label="Height" control={control} />
             </Grid>
             <Grid item xs={12} sx={{ heigh: "80px" }}>
-              <TextField
-                {...register("description")}
-                fullWidth
-                label={"Description"}
+              <CustomTextField
+                name="description"
+                label="Description"
+                control={control}
               />
             </Grid>
           </Grid>

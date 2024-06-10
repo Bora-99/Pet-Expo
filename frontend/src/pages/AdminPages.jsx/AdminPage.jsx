@@ -58,7 +58,6 @@ export default function AdminPage() {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(rows, "rowss");
   const handleClickOpen = (id) => {
     setOpen(true);
     setSelectedId(id);

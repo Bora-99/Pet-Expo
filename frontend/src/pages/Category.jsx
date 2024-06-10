@@ -41,7 +41,7 @@ export default function Category({ type }) {
     
      const timeoutId = setTimeout(() => {
        handleSearch()
-     }, 500);
+     }, 300);
      return () => clearTimeout(timeoutId);
    }, [searchInput, type]);
 

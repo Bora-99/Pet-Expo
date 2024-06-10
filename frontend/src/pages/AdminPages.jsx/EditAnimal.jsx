@@ -11,7 +11,6 @@ export default function EditAnimal ()
   const { id } = useParams()
 
   const onSubmit = async (data) => {
-    console.log(data, "dataa");
     axios
       .put(`http://localhost:5173/animals/${id}`, data)
       .then(() => {

@@ -11,7 +11,6 @@ app.use(cors());
 app.use("/animals", animalsRoutes);
 
 app.get("/", (request, response) => {
-  console.log(request);
   return response.status(234).send("welcome to mern project");
 });
 

@@ -17,12 +17,12 @@ export default function Contacts ()
       <Grid sx={{ padding: 2 }} xs={4}>
         <Map />
       </Grid>
-      <Grid xs={6}>
+      <Grid xs={6} sx={{paddingLeft: 20}}>
         <ContactUs />
         <FollowCard
           title={"Follow us on..."}
           subheader={""}
-          sx={{ boxShadow: 2, paddingTop: 2 }}
+          sx={{ boxShadow: 2, paddingTop: 2, margin: 5 }}
         />
       </Grid>
       <Footer/>

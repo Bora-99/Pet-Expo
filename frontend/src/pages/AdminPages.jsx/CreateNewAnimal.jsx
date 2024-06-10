@@ -8,7 +8,6 @@ export default function CreateNewAnimal() {
   const methods = useForm();
   const navigate = useNavigate();
   const onSubmit = async (data) => {
-    console.log(data, "dataa");
     axios
       .post(`http://localhost:5173/animals`, data)
       .then(() => {
